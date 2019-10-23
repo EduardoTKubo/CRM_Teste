@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Teste.Classes;
+using Teste.Forms;
+
 
 namespace Teste
 {
@@ -16,7 +19,17 @@ namespace Teste
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new frmLogin());
+
+            if(clsUsuLogado.Log_Status == "OPERADOR")
+            {
+                Application.Run(new frmAtivo());
+            }
+            else
+            {
+                Application.Run(new frmMDI());
+            }
         }
+
     }
 }
