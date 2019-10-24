@@ -40,7 +40,7 @@ namespace Teste
                 }
                 else
                 {
-                    clsVariaveis.StrSQL = "select SolicitaSenha from Usuarios where Ativo = 1 and Doc = '" + txtLogin.Text + "'";
+                    clsVariaveis.StrSQL = "select SolicitaSenha from Usuario where Ativo = 1 and Doc = '" + txtLogin.Text + "'";
                     DataTable dt = new DataTable();
                     dt = await clsConexao.ConsultaAsync(clsVariaveis.StrSQL);
                     if(dt.Rows.Count > 0)

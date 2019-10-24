@@ -33,6 +33,7 @@
             this.mnuAtivo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuManut = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBases = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRelat = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +45,6 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mnuBases = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -71,12 +71,14 @@
             // 
             this.mnuOperacao.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuAtivo});
+            this.mnuOperacao.Enabled = false;
             this.mnuOperacao.Name = "mnuOperacao";
             this.mnuOperacao.Size = new System.Drawing.Size(70, 20);
             this.mnuOperacao.Text = "Operação";
             // 
             // mnuAtivo
             // 
+            this.mnuAtivo.Enabled = false;
             this.mnuAtivo.Name = "mnuAtivo";
             this.mnuAtivo.Size = new System.Drawing.Size(180, 22);
             this.mnuAtivo.Text = "Ativo";
@@ -91,9 +93,16 @@
             // 
             this.mnuManut.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuBases});
+            this.mnuManut.Enabled = false;
             this.mnuManut.Name = "mnuManut";
             this.mnuManut.Size = new System.Drawing.Size(86, 20);
             this.mnuManut.Text = "Manutenção";
+            // 
+            // mnuBases
+            // 
+            this.mnuBases.Name = "mnuBases";
+            this.mnuBases.Size = new System.Drawing.Size(180, 22);
+            this.mnuBases.Text = "Bases";
             // 
             // toolStripMenuItem2
             // 
@@ -103,6 +112,7 @@
             // 
             // mnuRelat
             // 
+            this.mnuRelat.Enabled = false;
             this.mnuRelat.Name = "mnuRelat";
             this.mnuRelat.Size = new System.Drawing.Size(71, 20);
             this.mnuRelat.Text = "Relatórios";
@@ -117,15 +127,18 @@
             // 
             this.mnuSistema.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuCadUsu});
+            this.mnuSistema.Enabled = false;
             this.mnuSistema.Name = "mnuSistema";
             this.mnuSistema.Size = new System.Drawing.Size(60, 20);
             this.mnuSistema.Text = "Sistema";
             // 
             // mnuCadUsu
             // 
+            this.mnuCadUsu.Enabled = false;
             this.mnuCadUsu.Name = "mnuCadUsu";
             this.mnuCadUsu.Size = new System.Drawing.Size(180, 22);
             this.mnuCadUsu.Text = "Cad Usuários";
+            this.mnuCadUsu.Click += new System.EventHandler(this.mnuCadUsu_Click);
             // 
             // toolStripMenuItem4
             // 
@@ -185,12 +198,6 @@
             this.toolStripStatusLabel3.Size = new System.Drawing.Size(100, 19);
             this.toolStripStatusLabel3.Text = "3";
             // 
-            // mnuBases
-            // 
-            this.mnuBases.Name = "mnuBases";
-            this.mnuBases.Size = new System.Drawing.Size(180, 22);
-            this.mnuBases.Text = "Bases";
-            // 
             // frmMDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,6 +211,7 @@
             this.Name = "frmMDI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Teste";
+            this.Resize += new System.EventHandler(this.frmMDI_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);

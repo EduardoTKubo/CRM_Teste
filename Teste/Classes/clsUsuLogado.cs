@@ -69,22 +69,23 @@ namespace Teste.Classes
         {
             if (cpf.Length < 6)
             {
-                clsVariaveis.StrSQL = ("select * from Usuarios where Ativo = 1 and Matricula = '@cpf' ").Replace("@cpf", cpf);
+                clsVariaveis.StrSQL = ("select * from Usuario where Ativo = 1 and Matricula = '@cpf' ").Replace("@cpf", cpf);
             }
             else
             {
                 if (senha.Length > 0)
                 {
-                    clsVariaveis.StrSQL = ("select * from Usuarios where Ativo = 1 and Doc ='@cpf' and Senha = '@senha' ").Replace("@cpf", cpf).Replace("@senha", senha);
+                    clsVariaveis.StrSQL = ("select * from Usuario where Ativo = 1 and Doc ='@cpf' and Senha = '@senha' ").Replace("@cpf", cpf).Replace("@senha", senha);
                 }
                 else
                 {
-                    clsVariaveis.StrSQL = ("select * from Usuarios where Ativo = 1 and Doc ='@cpf' ").Replace("@cpf", cpf);
+                    clsVariaveis.StrSQL = ("select * from Usuario where Ativo = 1 and Doc ='@cpf' ").Replace("@cpf", cpf);
                 }
 
             }
 
-            DataTable dt = await Classes.clsConexao.ConsultaAsync(clsVariaveis.StrSQL);
+            DataTable dt = new DataTable();
+            dt = await Classes.clsConexao.ConsultaAsync(clsVariaveis.StrSQL);
             if (dt.Rows.Count > 0)
                 return true;
             return false;
@@ -93,16 +94,16 @@ namespace Teste.Classes
 
         public async static Task<bool> ObterDadosUsuarioLogado(string cpf)
         {
-            string Param = "[IdUsu],[Nome],[Doc],[Rank],[Status],[Senha],[Equipe],[Base]";
+            string Param = "[IdUsu],[Nome],[Doc],[Rank],[Status],[Senha],[Equipe],[BaseDeTrab]";
 
             DataTable dt = new DataTable();
             if (cpf.Length < 6)
             {
-                dt = await Classes.clsConexao.ConsultaAsync(("select " + Param + " from Usuarios where Ativo = 1 and Matricula = '@cpf' ").Replace("@cpf", cpf));
+                dt = await Classes.clsConexao.ConsultaAsync(("select " + Param + " from Usuario where Ativo = 1 and Matricula = '@cpf' ").Replace("@cpf", cpf));
             }
             else
             {
-                dt = await Classes.clsConexao.ConsultaAsync(("select " + Param + " from Usuarios where Ativo = 1 and Doc = '@cpf' ").Replace("@cpf", cpf));
+                dt = await Classes.clsConexao.ConsultaAsync(("select " + Param + " from Usuario where Ativo = 1 and Doc = '@cpf' ").Replace("@cpf", cpf));
             }
 
             if (dt.Rows.Count > 0)

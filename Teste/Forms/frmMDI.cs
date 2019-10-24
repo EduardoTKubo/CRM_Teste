@@ -21,31 +21,51 @@ namespace Teste.Forms
             toolStripStatusLabel2.Text = clsUsuLogado.Log_Nome.ToString();
             toolStripStatusLabel3.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
-            //foreach (DataRow Acesso in clsConexao.ConsultaAsync("SELECT * FROM USUARIO_ACESSO_MENU WHERE IdUsu = " + clsUsuLogado.Log_Id).Rows)
-            //{
-            //    foreach (ToolStripMenuItem item in menuStrip1.Items)
-            //    {
-            //        if (item.Name == Acesso["ACESSO"].ToString())
-            //        {
-            //            item.Enabled = true;
-            //        }
+            TrataMenus();
 
-            //        foreach (ToolStripItem subitem in (item as ToolStripMenuItem).DropDownItems)
-            //        {
-            //            if (subitem.Name == Acesso["ACESSO"].ToString())
-            //            {
-            //                subitem.Enabled = true;
-            //            }
-            //        }
-            //    }
-            //}
+        }
 
+        private async void TrataMenus()
+        {
+            DataTable dt = new DataTable();
+            dt = await clsConexao.ConsultaAsync("SELECT * FROM USUARIO_ACESSO_MENU WHERE IdUsu = " + clsUsuLogado.Log_Id);
 
+            foreach (DataRow Acesso in dt.Rows)
+            {
+                foreach (ToolStripMenuItem item in menuStrip1.Items)
+                {
+                    if (item.Name == Acesso["NomeMenu"].ToString())
+                    {
+                        item.Enabled = true;
+                    }
+
+                    foreach (ToolStripItem subitem in (item as ToolStripMenuItem).DropDownItems)
+                    {
+                        if (subitem.Name == Acesso["NomeMenu"].ToString())
+                        {
+                            subitem.Enabled = true;
+                        }
+                    }
+                }
+            }
         }
 
         private void mnuSair_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void mnuCadUsu_Click(object sender, EventArgs e)
+        {
+            Classes.clsFuncoes.OpenForm(new Forms.frmUsuario(), this, "1");
+        }
+
+        private void frmMDI_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == System.Windows.Forms.FormWindowState.Maximized)
+            {
+                this.WindowState = System.Windows.Forms.FormWindowState.Normal;
+            }
         }
     }
 }
