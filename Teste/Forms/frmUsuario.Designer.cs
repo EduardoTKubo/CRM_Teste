@@ -31,6 +31,14 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageCad = new System.Windows.Forms.TabPage();
             this.groupBoxCad = new System.Windows.Forms.GroupBox();
+            this.groupBoxMenu = new System.Windows.Forms.GroupBox();
+            this.mnuCadUsu = new System.Windows.Forms.CheckBox();
+            this.mnuSistema = new System.Windows.Forms.CheckBox();
+            this.mnuRelat = new System.Windows.Forms.CheckBox();
+            this.mnuBases = new System.Windows.Forms.CheckBox();
+            this.mnuManut = new System.Windows.Forms.CheckBox();
+            this.mnuAtivo = new System.Windows.Forms.CheckBox();
+            this.mnuOperacao = new System.Windows.Forms.CheckBox();
             this.lblCod = new System.Windows.Forms.Label();
             this.listStatus = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -53,23 +61,15 @@
             this.dtGridOper = new System.Windows.Forms.DataGridView();
             this.tabPageOutrosUsuarios = new System.Windows.Forms.TabPage();
             this.dtGridUsu = new System.Windows.Forms.DataGridView();
-            this.groupBoxMenu = new System.Windows.Forms.GroupBox();
-            this.mnuCadUsu = new System.Windows.Forms.CheckBox();
-            this.mnuSistema = new System.Windows.Forms.CheckBox();
-            this.mnuRelat = new System.Windows.Forms.CheckBox();
-            this.mnuBases = new System.Windows.Forms.CheckBox();
-            this.mnuManut = new System.Windows.Forms.CheckBox();
-            this.mnuAtivo = new System.Windows.Forms.CheckBox();
-            this.mnuOperacao = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPageCad.SuspendLayout();
             this.groupBoxCad.SuspendLayout();
+            this.groupBoxMenu.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabPageOper.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridOper)).BeginInit();
             this.tabPageOutrosUsuarios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridUsu)).BeginInit();
-            this.groupBoxMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -116,6 +116,99 @@
             this.groupBoxCad.Size = new System.Drawing.Size(619, 327);
             this.groupBoxCad.TabIndex = 1;
             this.groupBoxCad.TabStop = false;
+            // 
+            // groupBoxMenu
+            // 
+            this.groupBoxMenu.Controls.Add(this.mnuCadUsu);
+            this.groupBoxMenu.Controls.Add(this.mnuSistema);
+            this.groupBoxMenu.Controls.Add(this.mnuRelat);
+            this.groupBoxMenu.Controls.Add(this.mnuBases);
+            this.groupBoxMenu.Controls.Add(this.mnuManut);
+            this.groupBoxMenu.Controls.Add(this.mnuAtivo);
+            this.groupBoxMenu.Controls.Add(this.mnuOperacao);
+            this.groupBoxMenu.Location = new System.Drawing.Point(374, 10);
+            this.groupBoxMenu.Name = "groupBoxMenu";
+            this.groupBoxMenu.Size = new System.Drawing.Size(223, 230);
+            this.groupBoxMenu.TabIndex = 19;
+            this.groupBoxMenu.TabStop = false;
+            // 
+            // mnuCadUsu
+            // 
+            this.mnuCadUsu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnuCadUsu.Location = new System.Drawing.Point(47, 192);
+            this.mnuCadUsu.Name = "mnuCadUsu";
+            this.mnuCadUsu.Size = new System.Drawing.Size(153, 20);
+            this.mnuCadUsu.TabIndex = 8;
+            this.mnuCadUsu.Text = "Cadastro de Usuários";
+            this.mnuCadUsu.UseVisualStyleBackColor = true;
+            // 
+            // mnuSistema
+            // 
+            this.mnuSistema.BackColor = System.Drawing.Color.DarkGray;
+            this.mnuSistema.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnuSistema.ForeColor = System.Drawing.Color.Black;
+            this.mnuSistema.Location = new System.Drawing.Point(28, 166);
+            this.mnuSistema.Name = "mnuSistema";
+            this.mnuSistema.Size = new System.Drawing.Size(172, 20);
+            this.mnuSistema.TabIndex = 7;
+            this.mnuSistema.Text = "Sistema";
+            this.mnuSistema.UseVisualStyleBackColor = false;
+            // 
+            // mnuRelat
+            // 
+            this.mnuRelat.BackColor = System.Drawing.Color.DarkGray;
+            this.mnuRelat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnuRelat.ForeColor = System.Drawing.Color.Black;
+            this.mnuRelat.Location = new System.Drawing.Point(28, 126);
+            this.mnuRelat.Name = "mnuRelat";
+            this.mnuRelat.Size = new System.Drawing.Size(172, 20);
+            this.mnuRelat.TabIndex = 6;
+            this.mnuRelat.Text = "Relatórios";
+            this.mnuRelat.UseVisualStyleBackColor = false;
+            // 
+            // mnuBases
+            // 
+            this.mnuBases.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnuBases.Location = new System.Drawing.Point(47, 97);
+            this.mnuBases.Name = "mnuBases";
+            this.mnuBases.Size = new System.Drawing.Size(153, 20);
+            this.mnuBases.TabIndex = 5;
+            this.mnuBases.Text = "Bases";
+            this.mnuBases.UseVisualStyleBackColor = true;
+            // 
+            // mnuManut
+            // 
+            this.mnuManut.BackColor = System.Drawing.Color.DarkGray;
+            this.mnuManut.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnuManut.ForeColor = System.Drawing.Color.Black;
+            this.mnuManut.Location = new System.Drawing.Point(28, 71);
+            this.mnuManut.Name = "mnuManut";
+            this.mnuManut.Size = new System.Drawing.Size(172, 20);
+            this.mnuManut.TabIndex = 4;
+            this.mnuManut.Text = "Manutenção";
+            this.mnuManut.UseVisualStyleBackColor = false;
+            // 
+            // mnuAtivo
+            // 
+            this.mnuAtivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnuAtivo.Location = new System.Drawing.Point(47, 45);
+            this.mnuAtivo.Name = "mnuAtivo";
+            this.mnuAtivo.Size = new System.Drawing.Size(153, 20);
+            this.mnuAtivo.TabIndex = 3;
+            this.mnuAtivo.Text = "Ativo";
+            this.mnuAtivo.UseVisualStyleBackColor = true;
+            // 
+            // mnuOperacao
+            // 
+            this.mnuOperacao.BackColor = System.Drawing.Color.DarkGray;
+            this.mnuOperacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mnuOperacao.ForeColor = System.Drawing.Color.Black;
+            this.mnuOperacao.Location = new System.Drawing.Point(28, 19);
+            this.mnuOperacao.Name = "mnuOperacao";
+            this.mnuOperacao.Size = new System.Drawing.Size(172, 20);
+            this.mnuOperacao.TabIndex = 2;
+            this.mnuOperacao.Text = "Operação";
+            this.mnuOperacao.UseVisualStyleBackColor = false;
             // 
             // lblCod
             // 
@@ -263,6 +356,7 @@
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(281, 21);
             this.txtSenha.TabIndex = 4;
+            this.txtSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SomenteLetrasMaiusculas);
             // 
             // cboEquipe
             // 
@@ -303,6 +397,8 @@
             this.txtCPF.Name = "txtCPF";
             this.txtCPF.Size = new System.Drawing.Size(109, 21);
             this.txtCPF.TabIndex = 0;
+            this.txtCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCPF_KeyPress);
+            this.txtCPF.Leave += new System.EventHandler(this.txtCPF_Leave);
             // 
             // tabPageOper
             // 
@@ -343,99 +439,6 @@
             this.dtGridUsu.TabIndex = 0;
             this.dtGridUsu.DoubleClick += new System.EventHandler(this.dtGridUsu_DoubleClick);
             // 
-            // groupBoxMenu
-            // 
-            this.groupBoxMenu.Controls.Add(this.mnuCadUsu);
-            this.groupBoxMenu.Controls.Add(this.mnuSistema);
-            this.groupBoxMenu.Controls.Add(this.mnuRelat);
-            this.groupBoxMenu.Controls.Add(this.mnuBases);
-            this.groupBoxMenu.Controls.Add(this.mnuManut);
-            this.groupBoxMenu.Controls.Add(this.mnuAtivo);
-            this.groupBoxMenu.Controls.Add(this.mnuOperacao);
-            this.groupBoxMenu.Location = new System.Drawing.Point(374, 10);
-            this.groupBoxMenu.Name = "groupBoxMenu";
-            this.groupBoxMenu.Size = new System.Drawing.Size(223, 230);
-            this.groupBoxMenu.TabIndex = 19;
-            this.groupBoxMenu.TabStop = false;
-            // 
-            // mnuCadUsu
-            // 
-            this.mnuCadUsu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mnuCadUsu.Location = new System.Drawing.Point(47, 192);
-            this.mnuCadUsu.Name = "mnuCadUsu";
-            this.mnuCadUsu.Size = new System.Drawing.Size(153, 20);
-            this.mnuCadUsu.TabIndex = 8;
-            this.mnuCadUsu.Text = "Cadastro de Usuários";
-            this.mnuCadUsu.UseVisualStyleBackColor = true;
-            // 
-            // mnuSistema
-            // 
-            this.mnuSistema.BackColor = System.Drawing.Color.DarkGray;
-            this.mnuSistema.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mnuSistema.ForeColor = System.Drawing.Color.Black;
-            this.mnuSistema.Location = new System.Drawing.Point(28, 166);
-            this.mnuSistema.Name = "mnuSistema";
-            this.mnuSistema.Size = new System.Drawing.Size(172, 20);
-            this.mnuSistema.TabIndex = 7;
-            this.mnuSistema.Text = "Sistema";
-            this.mnuSistema.UseVisualStyleBackColor = false;
-            // 
-            // mnuRelat
-            // 
-            this.mnuRelat.BackColor = System.Drawing.Color.DarkGray;
-            this.mnuRelat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mnuRelat.ForeColor = System.Drawing.Color.Black;
-            this.mnuRelat.Location = new System.Drawing.Point(28, 126);
-            this.mnuRelat.Name = "mnuRelat";
-            this.mnuRelat.Size = new System.Drawing.Size(172, 20);
-            this.mnuRelat.TabIndex = 6;
-            this.mnuRelat.Text = "Relatórios";
-            this.mnuRelat.UseVisualStyleBackColor = false;
-            // 
-            // mnuBases
-            // 
-            this.mnuBases.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mnuBases.Location = new System.Drawing.Point(47, 97);
-            this.mnuBases.Name = "mnuBases";
-            this.mnuBases.Size = new System.Drawing.Size(153, 20);
-            this.mnuBases.TabIndex = 5;
-            this.mnuBases.Text = "Bases";
-            this.mnuBases.UseVisualStyleBackColor = true;
-            // 
-            // mnuManut
-            // 
-            this.mnuManut.BackColor = System.Drawing.Color.DarkGray;
-            this.mnuManut.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mnuManut.ForeColor = System.Drawing.Color.Black;
-            this.mnuManut.Location = new System.Drawing.Point(28, 71);
-            this.mnuManut.Name = "mnuManut";
-            this.mnuManut.Size = new System.Drawing.Size(172, 20);
-            this.mnuManut.TabIndex = 4;
-            this.mnuManut.Text = "Manutenção";
-            this.mnuManut.UseVisualStyleBackColor = false;
-            // 
-            // mnuAtivo
-            // 
-            this.mnuAtivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mnuAtivo.Location = new System.Drawing.Point(47, 45);
-            this.mnuAtivo.Name = "mnuAtivo";
-            this.mnuAtivo.Size = new System.Drawing.Size(153, 20);
-            this.mnuAtivo.TabIndex = 3;
-            this.mnuAtivo.Text = "Ativo";
-            this.mnuAtivo.UseVisualStyleBackColor = true;
-            // 
-            // mnuOperacao
-            // 
-            this.mnuOperacao.BackColor = System.Drawing.Color.DarkGray;
-            this.mnuOperacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mnuOperacao.ForeColor = System.Drawing.Color.Black;
-            this.mnuOperacao.Location = new System.Drawing.Point(28, 19);
-            this.mnuOperacao.Name = "mnuOperacao";
-            this.mnuOperacao.Size = new System.Drawing.Size(172, 20);
-            this.mnuOperacao.TabIndex = 2;
-            this.mnuOperacao.Text = "Operação";
-            this.mnuOperacao.UseVisualStyleBackColor = false;
-            // 
             // frmUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -451,12 +454,12 @@
             this.tabPageCad.ResumeLayout(false);
             this.groupBoxCad.ResumeLayout(false);
             this.groupBoxCad.PerformLayout();
+            this.groupBoxMenu.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.tabPageOper.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtGridOper)).EndInit();
             this.tabPageOutrosUsuarios.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtGridUsu)).EndInit();
-            this.groupBoxMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -17,12 +17,13 @@ namespace Teste.Forms
         {
             InitializeComponent();
 
-            toolStripStatusLabel1.Text = Application.ProductName.ToString();
+            this.Text = Application.ProductName.ToString();
+
+            toolStripStatusLabel1.Text = "v." + Application.ProductVersion.ToString();
             toolStripStatusLabel2.Text = clsUsuLogado.Log_Nome.ToString();
             toolStripStatusLabel3.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
             TrataMenus();
-
         }
 
         private async void TrataMenus()

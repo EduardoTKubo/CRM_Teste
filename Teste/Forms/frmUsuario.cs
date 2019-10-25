@@ -93,6 +93,7 @@ namespace Teste.Forms
             {
                 Limpar();
                 txtCPF.PasswordChar = Convert.ToChar("*");
+                txtSenha.PasswordChar = Convert.ToChar("*");
 
                 clsVariaveis.StrSQL = string.Empty;
                 if (tipo == "CPF")
@@ -153,6 +154,11 @@ namespace Teste.Forms
                 else
                 {
                     TrataBotoes("INCLUSAO");
+                    txtCPF.Text = idcod;
+                    txtCPF.PasswordChar = '\0';
+                    txtCPF.Enabled = true;
+                    txtSenha.PasswordChar = '\0';
+                    txtNome.Focus();
                 }
             }
             catch (Exception e)
@@ -183,6 +189,7 @@ namespace Teste.Forms
             txtCPF.Enabled = true;
 
             txtSenha.Enabled = true;
+            txtSenha.PasswordChar = '\0';
             chkSenha.Enabled = true;
 
             clsFuncoes.LimpaCampos(this, groupBoxCad);
@@ -385,6 +392,25 @@ namespace Teste.Forms
                 txtSenha.Enabled = true;
                 chkSenha.Enabled = true;
             }
+        }
+
+        private void txtCPF_Leave(object sender, EventArgs e)
+        {
+            string resp = clsFuncoes.ValidarDoc(this, txtCPF);
+            if (resp != "")
+            {
+                MessageBox.Show("CPF inválido!", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.txtCPF.Focus();
+            }
+            else
+            {
+                P03_PreencherTela("CPF", txtCPF.Text);
+            }
+        }
+
+        private void txtCPF_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Classes.clsFuncoes.IsNumeric(e);
         }
     }
 }
