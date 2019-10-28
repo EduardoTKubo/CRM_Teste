@@ -212,6 +212,7 @@
             // 
             // lblCod
             // 
+            this.lblCod.AllowDrop = true;
             this.lblCod.AutoSize = true;
             this.lblCod.Location = new System.Drawing.Point(333, 30);
             this.lblCod.Name = "lblCod";

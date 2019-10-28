@@ -99,8 +99,7 @@
             this.txtSenha.Size = new System.Drawing.Size(145, 21);
             this.txtSenha.TabIndex = 2;
             this.txtSenha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SomenteLetrasMaiusculas);
-            this.txtSenha.Leave += new System.EventHandler(this.txtSenha_Leave);
+            this.txtSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSenha_KeyPress);
             // 
             // txtLogin
             // 
@@ -112,7 +111,6 @@
             this.txtLogin.TabIndex = 1;
             this.txtLogin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtLogin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLogin_KeyPress);
-            this.txtLogin.Leave += new System.EventHandler(this.txtLogin_Leave);
             // 
             // frmLogin
             // 

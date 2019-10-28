@@ -61,6 +61,12 @@ namespace Teste.Classes
             set { clsVariaveis.strNegativa = value; }
         }
 
+        private static string strErro = string.Empty;
+        public static string StrErro
+        {
+            get { return clsVariaveis.strErro; }
+            set { clsVariaveis.strErro = value; }
+        }
 
 
     }

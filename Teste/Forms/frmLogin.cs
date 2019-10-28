@@ -17,7 +17,7 @@ namespace Teste
         {
             InitializeComponent();
         }
-        
+
         private void SomenteLetrasMaiusculas(object sender, KeyPressEventArgs e)
         {
             e.KeyChar = Convert.ToChar(e.KeyChar.ToString().ToUpper());
@@ -28,45 +28,44 @@ namespace Teste
             Application.Exit();
         }
 
-        private void txtLogin_KeyPress(object sender, KeyPressEventArgs e)
+        private async void txtLogin_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = Classes.clsFuncoes.IsNumeric(e);
 
-            ////if (e.KeyChar == (char)Keys.Enter)
-            ////{               
-            //    // se der Enter ....
-            ////}
-        }
-
-        private async void txtLogin_Leave(object sender, EventArgs e)
-        {
-            if(txtLogin.Text.Trim() != "")
+            if (e.KeyChar == (char)Keys.Enter)
             {
-                txtSenha.Text = "";
-                txtSenha.Enabled = false;
+                if (txtLogin.Text.Trim() != "")
+                {
+                    txtSenha.Text = "";
+                    txtSenha.Enabled = false;
 
-                string resp = clsFuncoes.ValidarDoc(this, txtLogin);
-                if (resp != "")
-                {
-                    MessageBox.Show(resp, "CPF", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtLogin.Focus();
-                }
-                else
-                {
-                    clsVariaveis.StrSQL = "select SolicitaSenha from Usuario where Ativo = 1 and Doc = '" + txtLogin.Text + "'";
-                    DataTable dt = new DataTable();
-                    dt = await clsConexao.ConsultaAsync(clsVariaveis.StrSQL);
-                    if (dt.Rows.Count > 0)
+                    string resp = clsFuncoes.ValidarDoc(this, txtLogin);
+                    if (resp != "")
                     {
-                        if (dt.Rows[0]["SolicitaSenha"].ToString() == "True")
-                        {
-                            txtSenha.Enabled = true;
-                            txtSenha.Focus();
-                        }
+                        MessageBox.Show(resp, "CPF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtLogin.Focus();
                     }
                     else
                     {
-                        btnAcesso.Focus();
+                        clsVariaveis.StrSQL = "select SolicitaSenha from Usuario where Ativo = 1 and Doc = '" + txtLogin.Text + "'";
+                        DataTable dt = new DataTable();
+                        dt = await clsConexao.ConsultaAsync(clsVariaveis.StrSQL);
+                        if (dt.Rows.Count > 0)
+                        {
+                            if (dt.Rows[0]["SolicitaSenha"].ToString() == "True")
+                            {
+                                txtSenha.Enabled = true;
+                                txtSenha.Focus();
+                            }
+                            else
+                            {
+                                btnAcesso.PerformClick();
+                            }
+                        }
+                        else
+                        {
+                            btnAcesso.PerformClick();
+                        }
                     }
                 }
             }
@@ -82,23 +81,34 @@ namespace Teste
 
         private async void btnAcesso_Click(object sender, EventArgs e)
         {
-            if (await clsUsuLogado.IsLoginOK(txtLogin.Text, txtSenha.Text))
+            if (txtLogin.Text.Trim() != "")
             {
-                if (await clsUsuLogado.ObterDadosUsuarioLogado(txtLogin.Text))
+                btnAcesso.Enabled = false;
+
+                if (await clsUsuLogado.IsLoginOK(txtLogin.Text, txtSenha.Text))
                 {
-                    clsUsuLogado.MapOperacional(clsUsuLogado.Log_Cpf);
-                    this.Close();
-                }        
-            }
-            else
-            {
-                MessageBox.Show("Usuario não localizado", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (await clsUsuLogado.ObterDadosUsuarioLogado(txtLogin.Text))
+                    {
+                        clsUsuLogado.MapOperacional(clsUsuLogado.Log_Cpf);
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(clsVariaveis.StrErro , "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                btnAcesso.Enabled = true;
             }
         }
 
-        private void txtSenha_Leave(object sender, EventArgs e)
+        private void txtSenha_KeyPress(object sender, KeyPressEventArgs e)
         {
-            btnAcesso.PerformClick();   // vai executar o evento > btnAcesso_Click
+            if (txtSenha.Text != "" && e.KeyChar == (char)Keys.Enter)
+            {
+                btnAcesso.PerformClick();   // vai executar o evento > btnAcesso_Click
+            }
         }
+
     }
 }
