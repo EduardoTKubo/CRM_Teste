@@ -25,7 +25,8 @@ namespace Teste
 
         private void btnSair_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            clsVariaveis.StrErro = "btnSair_Click";
+            this.Close();
         }
 
         private async void txtLogin_KeyPress(object sender, KeyPressEventArgs e)
@@ -59,12 +60,12 @@ namespace Teste
                             }
                             else
                             {
-                                btnAcesso.PerformClick();
+                                //btnAcesso.PerformClick();
                             }
                         }
                         else
                         {
-                            btnAcesso.PerformClick();
+                            //btnAcesso.PerformClick();
                         }
                     }
                 }
@@ -106,7 +107,7 @@ namespace Teste
         {
             if (txtSenha.Text != "" && e.KeyChar == (char)Keys.Enter)
             {
-                btnAcesso.PerformClick();   // vai executar o evento > btnAcesso_Click
+                //btnAcesso.PerformClick();   // vai executar o evento > btnAcesso_Click
             }
         }
 

@@ -19,9 +19,13 @@ namespace Teste.Forms
 
             this.Text = Application.ProductName.ToString();
 
-            toolStripStatusLabel1.Text = "v." + Application.ProductVersion.ToString();
-            toolStripStatusLabel2.Text = clsUsuLogado.Log_Nome.ToString();
-            toolStripStatusLabel3.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            if(clsUsuLogado.Log_Nome != null)
+            {
+                toolStripStatusLabel1.Text = "v." + Application.ProductVersion.ToString();
+                toolStripStatusLabel2.Text = clsUsuLogado.Log_Nome.ToString();
+                toolStripStatusLabel3.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            }
+            
 
             TrataMenus();
         }
@@ -67,6 +71,11 @@ namespace Teste.Forms
             {
                 this.WindowState = System.Windows.Forms.FormWindowState.Normal;
             }
+        }
+
+        private void mnuAtivo_Click(object sender, EventArgs e)
+        {
+            Classes.clsFuncoes.OpenForm(new Forms.frmAtivo(), this, "1");
         }
     }
 }

@@ -20,15 +20,20 @@ namespace Teste
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmLogin());
+            Application.Exit();            
 
-            if(clsUsuLogado.Log_Status == "OPERADOR")
+            if(clsVariaveis.StrErro != "btnSair_Click")
             {
-                Application.Run(new frmAtivo());
+                if (clsUsuLogado.Log_Status == "OPERADOR")
+                {
+                    Application.Run(new frmAtivo());
+                }
+                else
+                {
+                    Application.Run(new frmMDI());
+                }
             }
-            else
-            {
-                Application.Run(new frmMDI());
-            }
+            
         }
 
     }

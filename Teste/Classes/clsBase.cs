@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
+﻿
+
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Teste.Classes
 {
     class clsBase
     {
-        private static SqlConnection sqlCon;
 
         public string Bs_Dt_Arquivo { get; set; }
         public string Bs_Dt_Limite { get; set; }
@@ -37,6 +31,9 @@ namespace Teste.Classes
         public string Bs_ObsDDD { get; set; }
         public string Bs_ObsTel { get; set; }
         public string Bs_ObsAg { get; set; }
+
+        public int Bs_TotTel { get; set; }
+        public int Bs_LinhaGrid { get; set; }
 
 
         // construtores
@@ -67,6 +64,16 @@ namespace Teste.Classes
             Bs_Em_Uso = bs_Em_Uso;
             Bs_Em_UsoHora = bs_Em_UsoHora;
         }
+
+
+        //public async Task<bool> TabularTel( string _ddd ,string _tel , string _tab ,string _ordem ,string _arquivo ,string _acao )
+        //{
+        //    clsVariaveis.StrSQL = "Update Base_Tel";
+
+
+
+        //}
+
 
 
 

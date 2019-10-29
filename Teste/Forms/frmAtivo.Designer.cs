@@ -58,7 +58,7 @@
             this.btnGravar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cboTabulacao = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblDDD = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblFone = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -69,6 +69,8 @@
             this.txtObs = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnSair = new System.Windows.Forms.Button();
+            this.lblAgendamento = new System.Windows.Forms.Label();
+            this.lstTabulacao = new System.Windows.Forms.ListBox();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridTel)).BeginInit();
@@ -196,13 +198,14 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.groupBoxPositivo);
+            this.groupBox2.Controls.Add(this.lstTabulacao);
             this.groupBox2.Controls.Add(this.btnGravar);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.cboTabulacao);
-            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.lblDDD);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.lblFone);
+            this.groupBox2.Controls.Add(this.lblAgendamento);
             this.groupBox2.Location = new System.Drawing.Point(445, 0);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(431, 142);
@@ -220,7 +223,7 @@
             this.groupBoxPositivo.Controls.Add(this.label7);
             this.groupBoxPositivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxPositivo.ForeColor = System.Drawing.Color.Black;
-            this.groupBoxPositivo.Location = new System.Drawing.Point(0, 45);
+            this.groupBoxPositivo.Location = new System.Drawing.Point(445, 87);
             this.groupBoxPositivo.Name = "groupBoxPositivo";
             this.groupBoxPositivo.Size = new System.Drawing.Size(431, 96);
             this.groupBoxPositivo.TabIndex = 17;
@@ -236,7 +239,7 @@
             this.groupBoxAg.Controls.Add(this.dtPickerHr);
             this.groupBoxAg.Controls.Add(this.dtPickerDt);
             this.groupBoxAg.Controls.Add(this.lblXAg);
-            this.groupBoxAg.Location = new System.Drawing.Point(0, 3);
+            this.groupBoxAg.Location = new System.Drawing.Point(0, 51);
             this.groupBoxAg.Name = "groupBoxAg";
             this.groupBoxAg.Size = new System.Drawing.Size(431, 94);
             this.groupBoxAg.TabIndex = 18;
@@ -377,6 +380,7 @@
             this.btnGravar.TabIndex = 16;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // label5
             // 
@@ -397,17 +401,17 @@
             this.cboTabulacao.Size = new System.Drawing.Size(310, 23);
             this.cboTabulacao.TabIndex = 14;
             // 
-            // label3
+            // lblDDD
             // 
-            this.label3.AllowDrop = true;
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(98, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 18);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "99";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblDDD.AllowDrop = true;
+            this.lblDDD.BackColor = System.Drawing.Color.White;
+            this.lblDDD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDDD.Location = new System.Drawing.Point(98, 16);
+            this.lblDDD.Name = "lblDDD";
+            this.lblDDD.Size = new System.Drawing.Size(31, 18);
+            this.lblDDD.TabIndex = 13;
+            this.lblDDD.Text = "99";
+            this.lblDDD.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label4
             // 
@@ -513,12 +517,33 @@
             this.btnSair.UseVisualStyleBackColor = true;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
+            // lblAgendamento
+            // 
+            this.lblAgendamento.AllowDrop = true;
+            this.lblAgendamento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblAgendamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAgendamento.Location = new System.Drawing.Point(15, 110);
+            this.lblAgendamento.Name = "lblAgendamento";
+            this.lblAgendamento.Size = new System.Drawing.Size(392, 18);
+            this.lblAgendamento.TabIndex = 18;
+            this.lblAgendamento.Text = "lblAgendamento";
+            this.lblAgendamento.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lstTabulacao
+            // 
+            this.lstTabulacao.FormattingEnabled = true;
+            this.lstTabulacao.Location = new System.Drawing.Point(259, 31);
+            this.lstTabulacao.Name = "lstTabulacao";
+            this.lstTabulacao.Size = new System.Drawing.Size(89, 30);
+            this.lstTabulacao.TabIndex = 19;
+            // 
             // frmAtivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(882, 358);
+            this.Controls.Add(this.groupBoxPositivo);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -571,7 +596,7 @@
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cboTabulacao;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblDDD;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblFone;
         private System.Windows.Forms.GroupBox groupBoxAg;
@@ -591,5 +616,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
+        private System.Windows.Forms.Label lblAgendamento;
+        private System.Windows.Forms.ListBox lstTabulacao;
     }
 }
