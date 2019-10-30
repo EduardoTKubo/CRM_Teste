@@ -40,27 +40,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBoxPositivo = new System.Windows.Forms.GroupBox();
-            this.groupBoxAg = new System.Windows.Forms.GroupBox();
-            this.btnGravarAg = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtObsAg = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.dtPickerHr = new System.Windows.Forms.DateTimePicker();
-            this.dtPickerDt = new System.Windows.Forms.DateTimePicker();
-            this.lblXAg = new System.Windows.Forms.Label();
-            this.btnGravaPos = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lblXPos = new System.Windows.Forms.Label();
-            this.cboFPagto = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lstUsoTabulacao = new System.Windows.Forms.ListBox();
             this.btnGravar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cboTabulacao = new System.Windows.Forms.ComboBox();
             this.lblDDD = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblFone = new System.Windows.Forms.Label();
+            this.lblAgendamento = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnFinalizar = new System.Windows.Forms.Button();
             this.lblUltimaTab = new System.Windows.Forms.Label();
@@ -69,16 +56,29 @@
             this.txtObs = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnSair = new System.Windows.Forms.Button();
-            this.lblAgendamento = new System.Windows.Forms.Label();
-            this.lstTabulacao = new System.Windows.Forms.ListBox();
+            this.groupBoxPositivo = new System.Windows.Forms.GroupBox();
+            this.btnGravaPos = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lblXPos = new System.Windows.Forms.Label();
+            this.cboFPagto = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupBoxAg = new System.Windows.Forms.GroupBox();
+            this.btnGravarAg = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtObsAg = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dtPickerHr = new System.Windows.Forms.DateTimePicker();
+            this.dtPickerDt = new System.Windows.Forms.DateTimePicker();
+            this.lblXAg = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridTel)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBoxPositivo.SuspendLayout();
-            this.groupBoxAg.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBoxPositivo.SuspendLayout();
+            this.groupBoxAg.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -198,7 +198,9 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.lstTabulacao);
+            this.groupBox2.Controls.Add(this.groupBoxPositivo);
+            this.groupBox2.Controls.Add(this.groupBoxAg);
+            this.groupBox2.Controls.Add(this.lstUsoTabulacao);
             this.groupBox2.Controls.Add(this.btnGravar);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.cboTabulacao);
@@ -208,168 +210,18 @@
             this.groupBox2.Controls.Add(this.lblAgendamento);
             this.groupBox2.Location = new System.Drawing.Point(445, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(431, 142);
+            this.groupBox2.Size = new System.Drawing.Size(431, 143);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             // 
-            // groupBoxPositivo
+            // lstUsoTabulacao
             // 
-            this.groupBoxPositivo.Controls.Add(this.groupBoxAg);
-            this.groupBoxPositivo.Controls.Add(this.btnGravaPos);
-            this.groupBoxPositivo.Controls.Add(this.label8);
-            this.groupBoxPositivo.Controls.Add(this.textBox1);
-            this.groupBoxPositivo.Controls.Add(this.lblXPos);
-            this.groupBoxPositivo.Controls.Add(this.cboFPagto);
-            this.groupBoxPositivo.Controls.Add(this.label7);
-            this.groupBoxPositivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxPositivo.ForeColor = System.Drawing.Color.Black;
-            this.groupBoxPositivo.Location = new System.Drawing.Point(445, 87);
-            this.groupBoxPositivo.Name = "groupBoxPositivo";
-            this.groupBoxPositivo.Size = new System.Drawing.Size(431, 96);
-            this.groupBoxPositivo.TabIndex = 17;
-            this.groupBoxPositivo.TabStop = false;
-            this.groupBoxPositivo.Visible = false;
-            // 
-            // groupBoxAg
-            // 
-            this.groupBoxAg.Controls.Add(this.btnGravarAg);
-            this.groupBoxAg.Controls.Add(this.label10);
-            this.groupBoxAg.Controls.Add(this.txtObsAg);
-            this.groupBoxAg.Controls.Add(this.label9);
-            this.groupBoxAg.Controls.Add(this.dtPickerHr);
-            this.groupBoxAg.Controls.Add(this.dtPickerDt);
-            this.groupBoxAg.Controls.Add(this.lblXAg);
-            this.groupBoxAg.Location = new System.Drawing.Point(0, 51);
-            this.groupBoxAg.Name = "groupBoxAg";
-            this.groupBoxAg.Size = new System.Drawing.Size(431, 94);
-            this.groupBoxAg.TabIndex = 18;
-            this.groupBoxAg.TabStop = false;
-            this.groupBoxAg.Text = "Agendamento";
-            this.groupBoxAg.Visible = false;
-            // 
-            // btnGravarAg
-            // 
-            this.btnGravarAg.Location = new System.Drawing.Point(332, 49);
-            this.btnGravarAg.Name = "btnGravarAg";
-            this.btnGravarAg.Size = new System.Drawing.Size(75, 23);
-            this.btnGravarAg.TabIndex = 21;
-            this.btnGravarAg.Text = "Gravar";
-            this.btnGravarAg.UseVisualStyleBackColor = true;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(11, 50);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(29, 13);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "OBS";
-            // 
-            // txtObsAg
-            // 
-            this.txtObsAg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtObsAg.Location = new System.Drawing.Point(97, 49);
-            this.txtObsAg.MaxLength = 50;
-            this.txtObsAg.Name = "txtObsAg";
-            this.txtObsAg.Size = new System.Drawing.Size(229, 21);
-            this.txtObsAg.TabIndex = 19;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(11, 19);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(72, 13);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "DATA/HORA";
-            // 
-            // dtPickerHr
-            // 
-            this.dtPickerHr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtPickerHr.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtPickerHr.Location = new System.Drawing.Point(196, 16);
-            this.dtPickerHr.Name = "dtPickerHr";
-            this.dtPickerHr.Size = new System.Drawing.Size(93, 21);
-            this.dtPickerHr.TabIndex = 17;
-            // 
-            // dtPickerDt
-            // 
-            this.dtPickerDt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtPickerDt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtPickerDt.Location = new System.Drawing.Point(97, 16);
-            this.dtPickerDt.Name = "dtPickerDt";
-            this.dtPickerDt.Size = new System.Drawing.Size(93, 21);
-            this.dtPickerDt.TabIndex = 6;
-            // 
-            // lblXAg
-            // 
-            this.lblXAg.AutoSize = true;
-            this.lblXAg.BackColor = System.Drawing.Color.Red;
-            this.lblXAg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblXAg.ForeColor = System.Drawing.Color.White;
-            this.lblXAg.Location = new System.Drawing.Point(408, 15);
-            this.lblXAg.Name = "lblXAg";
-            this.lblXAg.Size = new System.Drawing.Size(17, 16);
-            this.lblXAg.TabIndex = 16;
-            this.lblXAg.Text = "X";
-            // 
-            // btnGravaPos
-            // 
-            this.btnGravaPos.Location = new System.Drawing.Point(309, 51);
-            this.btnGravaPos.Name = "btnGravaPos";
-            this.btnGravaPos.Size = new System.Drawing.Size(80, 30);
-            this.btnGravaPos.TabIndex = 18;
-            this.btnGravaPos.Text = "Gravar";
-            this.btnGravaPos.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 53);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(115, 13);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "SENHA DO AUDITOR";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(141, 53);
-            this.textBox1.MaxLength = 15;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PasswordChar = '*';
-            this.textBox1.Size = new System.Drawing.Size(132, 20);
-            this.textBox1.TabIndex = 16;
-            // 
-            // lblXPos
-            // 
-            this.lblXPos.AutoSize = true;
-            this.lblXPos.BackColor = System.Drawing.Color.Red;
-            this.lblXPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblXPos.ForeColor = System.Drawing.Color.White;
-            this.lblXPos.Location = new System.Drawing.Point(408, 11);
-            this.lblXPos.Name = "lblXPos";
-            this.lblXPos.Size = new System.Drawing.Size(17, 16);
-            this.lblXPos.TabIndex = 15;
-            this.lblXPos.Text = "X";
-            // 
-            // cboFPagto
-            // 
-            this.cboFPagto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboFPagto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboFPagto.FormattingEnabled = true;
-            this.cboFPagto.Location = new System.Drawing.Point(141, 22);
-            this.cboFPagto.Name = "cboFPagto";
-            this.cboFPagto.Size = new System.Drawing.Size(248, 23);
-            this.cboFPagto.TabIndex = 14;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(11, 25);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(103, 13);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "FORMA DE PAGTO";
+            this.lstUsoTabulacao.FormattingEnabled = true;
+            this.lstUsoTabulacao.Location = new System.Drawing.Point(259, 31);
+            this.lstUsoTabulacao.Name = "lstUsoTabulacao";
+            this.lstUsoTabulacao.Size = new System.Drawing.Size(89, 30);
+            this.lstUsoTabulacao.TabIndex = 19;
+            this.lstUsoTabulacao.Visible = false;
             // 
             // btnGravar
             // 
@@ -400,6 +252,7 @@
             this.cboTabulacao.Name = "cboTabulacao";
             this.cboTabulacao.Size = new System.Drawing.Size(310, 23);
             this.cboTabulacao.TabIndex = 14;
+            this.cboTabulacao.SelectedIndexChanged += new System.EventHandler(this.cboTabulacao_SelectedIndexChanged);
             // 
             // lblDDD
             // 
@@ -434,6 +287,18 @@
             this.lblFone.Text = "999999999";
             this.lblFone.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // lblAgendamento
+            // 
+            this.lblAgendamento.AllowDrop = true;
+            this.lblAgendamento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblAgendamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAgendamento.Location = new System.Drawing.Point(15, 110);
+            this.lblAgendamento.Name = "lblAgendamento";
+            this.lblAgendamento.Size = new System.Drawing.Size(392, 18);
+            this.lblAgendamento.TabIndex = 18;
+            this.lblAgendamento.Text = "lblAgendamento";
+            this.lblAgendamento.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btnFinalizar);
@@ -456,6 +321,7 @@
             this.btnFinalizar.TabIndex = 24;
             this.btnFinalizar.Text = "Finalizar / Ordem";
             this.btnFinalizar.UseVisualStyleBackColor = true;
+            this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click);
             // 
             // lblUltimaTab
             // 
@@ -517,25 +383,168 @@
             this.btnSair.UseVisualStyleBackColor = true;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
-            // lblAgendamento
+            // groupBoxPositivo
             // 
-            this.lblAgendamento.AllowDrop = true;
-            this.lblAgendamento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblAgendamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAgendamento.Location = new System.Drawing.Point(15, 110);
-            this.lblAgendamento.Name = "lblAgendamento";
-            this.lblAgendamento.Size = new System.Drawing.Size(392, 18);
-            this.lblAgendamento.TabIndex = 18;
-            this.lblAgendamento.Text = "lblAgendamento";
-            this.lblAgendamento.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.groupBoxPositivo.Controls.Add(this.btnGravaPos);
+            this.groupBoxPositivo.Controls.Add(this.label8);
+            this.groupBoxPositivo.Controls.Add(this.textBox1);
+            this.groupBoxPositivo.Controls.Add(this.lblXPos);
+            this.groupBoxPositivo.Controls.Add(this.cboFPagto);
+            this.groupBoxPositivo.Controls.Add(this.label7);
+            this.groupBoxPositivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxPositivo.ForeColor = System.Drawing.Color.Black;
+            this.groupBoxPositivo.Location = new System.Drawing.Point(0, 39);
+            this.groupBoxPositivo.Name = "groupBoxPositivo";
+            this.groupBoxPositivo.Size = new System.Drawing.Size(431, 104);
+            this.groupBoxPositivo.TabIndex = 22;
+            this.groupBoxPositivo.TabStop = false;
+            this.groupBoxPositivo.Visible = false;
             // 
-            // lstTabulacao
+            // btnGravaPos
             // 
-            this.lstTabulacao.FormattingEnabled = true;
-            this.lstTabulacao.Location = new System.Drawing.Point(259, 31);
-            this.lstTabulacao.Name = "lstTabulacao";
-            this.lstTabulacao.Size = new System.Drawing.Size(89, 30);
-            this.lstTabulacao.TabIndex = 19;
+            this.btnGravaPos.Location = new System.Drawing.Point(309, 51);
+            this.btnGravaPos.Name = "btnGravaPos";
+            this.btnGravaPos.Size = new System.Drawing.Size(80, 30);
+            this.btnGravaPos.TabIndex = 18;
+            this.btnGravaPos.Text = "Gravar";
+            this.btnGravaPos.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(11, 53);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(115, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "SENHA DO AUDITOR";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(141, 53);
+            this.textBox1.MaxLength = 15;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.PasswordChar = '*';
+            this.textBox1.Size = new System.Drawing.Size(132, 20);
+            this.textBox1.TabIndex = 16;
+            // 
+            // lblXPos
+            // 
+            this.lblXPos.AutoSize = true;
+            this.lblXPos.BackColor = System.Drawing.Color.Red;
+            this.lblXPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblXPos.ForeColor = System.Drawing.Color.White;
+            this.lblXPos.Location = new System.Drawing.Point(408, 11);
+            this.lblXPos.Name = "lblXPos";
+            this.lblXPos.Size = new System.Drawing.Size(17, 16);
+            this.lblXPos.TabIndex = 15;
+            this.lblXPos.Text = "X";
+            this.lblXPos.Click += new System.EventHandler(this.lblXPos_Click);
+            // 
+            // cboFPagto
+            // 
+            this.cboFPagto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFPagto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboFPagto.FormattingEnabled = true;
+            this.cboFPagto.Location = new System.Drawing.Point(141, 22);
+            this.cboFPagto.Name = "cboFPagto";
+            this.cboFPagto.Size = new System.Drawing.Size(248, 23);
+            this.cboFPagto.TabIndex = 14;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(11, 25);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(103, 13);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "FORMA DE PAGTO";
+            // 
+            // groupBoxAg
+            // 
+            this.groupBoxAg.Controls.Add(this.btnGravarAg);
+            this.groupBoxAg.Controls.Add(this.label10);
+            this.groupBoxAg.Controls.Add(this.txtObsAg);
+            this.groupBoxAg.Controls.Add(this.label9);
+            this.groupBoxAg.Controls.Add(this.dtPickerHr);
+            this.groupBoxAg.Controls.Add(this.dtPickerDt);
+            this.groupBoxAg.Controls.Add(this.lblXAg);
+            this.groupBoxAg.Location = new System.Drawing.Point(0, 43);
+            this.groupBoxAg.Name = "groupBoxAg";
+            this.groupBoxAg.Size = new System.Drawing.Size(431, 100);
+            this.groupBoxAg.TabIndex = 21;
+            this.groupBoxAg.TabStop = false;
+            this.groupBoxAg.Text = "Agendamento";
+            this.groupBoxAg.Visible = false;
+            // 
+            // btnGravarAg
+            // 
+            this.btnGravarAg.Location = new System.Drawing.Point(332, 49);
+            this.btnGravarAg.Name = "btnGravarAg";
+            this.btnGravarAg.Size = new System.Drawing.Size(75, 23);
+            this.btnGravarAg.TabIndex = 21;
+            this.btnGravarAg.Text = "Gravar";
+            this.btnGravarAg.UseVisualStyleBackColor = true;
+            this.btnGravarAg.Click += new System.EventHandler(this.btnGravarAg_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(11, 50);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(29, 13);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "OBS";
+            // 
+            // txtObsAg
+            // 
+            this.txtObsAg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtObsAg.Location = new System.Drawing.Point(97, 49);
+            this.txtObsAg.MaxLength = 50;
+            this.txtObsAg.Name = "txtObsAg";
+            this.txtObsAg.Size = new System.Drawing.Size(229, 21);
+            this.txtObsAg.TabIndex = 19;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(11, 19);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(72, 13);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "DATA/HORA";
+            // 
+            // dtPickerHr
+            // 
+            this.dtPickerHr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtPickerHr.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtPickerHr.Location = new System.Drawing.Point(196, 16);
+            this.dtPickerHr.Name = "dtPickerHr";
+            this.dtPickerHr.ShowUpDown = true;
+            this.dtPickerHr.Size = new System.Drawing.Size(93, 21);
+            this.dtPickerHr.TabIndex = 17;
+            this.dtPickerHr.Value = new System.DateTime(2019, 10, 30, 16, 53, 41, 0);
+            // 
+            // dtPickerDt
+            // 
+            this.dtPickerDt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtPickerDt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtPickerDt.Location = new System.Drawing.Point(97, 16);
+            this.dtPickerDt.Name = "dtPickerDt";
+            this.dtPickerDt.Size = new System.Drawing.Size(93, 21);
+            this.dtPickerDt.TabIndex = 6;
+            // 
+            // lblXAg
+            // 
+            this.lblXAg.AutoSize = true;
+            this.lblXAg.BackColor = System.Drawing.Color.Red;
+            this.lblXAg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblXAg.ForeColor = System.Drawing.Color.White;
+            this.lblXAg.Location = new System.Drawing.Point(408, 15);
+            this.lblXAg.Name = "lblXAg";
+            this.lblXAg.Size = new System.Drawing.Size(17, 16);
+            this.lblXAg.TabIndex = 16;
+            this.lblXAg.Text = "X";
+            this.lblXAg.Click += new System.EventHandler(this.lblXAg_Click);
             // 
             // frmAtivo
             // 
@@ -543,7 +552,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(882, 358);
-            this.Controls.Add(this.groupBoxPositivo);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -561,13 +569,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtGridTel)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.groupBoxPositivo.ResumeLayout(false);
             this.groupBoxPositivo.PerformLayout();
             this.groupBoxAg.ResumeLayout(false);
             this.groupBoxAg.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -586,27 +594,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBoxPositivo;
-        private System.Windows.Forms.Button btnGravaPos;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label lblXPos;
-        private System.Windows.Forms.ComboBox cboFPagto;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cboTabulacao;
         private System.Windows.Forms.Label lblDDD;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblFone;
-        private System.Windows.Forms.GroupBox groupBoxAg;
-        private System.Windows.Forms.DateTimePicker dtPickerHr;
-        private System.Windows.Forms.DateTimePicker dtPickerDt;
-        private System.Windows.Forms.Label lblXAg;
-        private System.Windows.Forms.Button btnGravarAg;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtObsAg;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnFinalizar;
         private System.Windows.Forms.Label lblUltimaTab;
@@ -617,6 +610,21 @@
         private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
         private System.Windows.Forms.Label lblAgendamento;
-        private System.Windows.Forms.ListBox lstTabulacao;
+        private System.Windows.Forms.ListBox lstUsoTabulacao;
+        private System.Windows.Forms.GroupBox groupBoxAg;
+        private System.Windows.Forms.Button btnGravarAg;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtObsAg;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DateTimePicker dtPickerHr;
+        private System.Windows.Forms.DateTimePicker dtPickerDt;
+        private System.Windows.Forms.Label lblXAg;
+        private System.Windows.Forms.GroupBox groupBoxPositivo;
+        private System.Windows.Forms.Button btnGravaPos;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lblXPos;
+        private System.Windows.Forms.ComboBox cboFPagto;
+        private System.Windows.Forms.Label label7;
     }
 }

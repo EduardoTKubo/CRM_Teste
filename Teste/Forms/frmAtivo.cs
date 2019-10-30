@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Teste.Classes;
@@ -32,16 +28,16 @@ namespace Teste.Forms
             CarregarCombos();
             P01_BuscaRegistro();
         }
-        
+
 
         private void CarregarCombos()
         {
             cboTabulacao.Items.Clear();
-            lstTabulacao.Items.Clear();
+            lstUsoTabulacao.Items.Clear();
             foreach (DataRow item in clsConexao.Consulta("select Descricao ,Uso from Tabulacoes where Ativo = 1 order by Descricao").Rows)
             {
                 cboTabulacao.Items.Add(item[0].ToString());
-                lstTabulacao.Items.Add(item[1].ToString());
+                lstUsoTabulacao.Items.Add(item[1].ToString());
             }
 
             cboFPagto.Items.Clear();
@@ -59,6 +55,9 @@ namespace Teste.Forms
             clsFuncoes.LimpaCampos(this, groupBox3);
 
             dtGridTel.DataSource = "";
+
+            groupBoxAg.Visible = false;
+            groupBoxPositivo.Visible = false;
 
             LimparClasseBase();
             this.Refresh();
@@ -86,7 +85,7 @@ namespace Teste.Forms
             Base.Bs_Uso = "";
             Base.Bs_Repasses = "";
             Base.Bs_Em_Uso = "";
-            Base.Bs_Em_UsoHora  = "";
+            Base.Bs_Em_UsoHora = "";
 
             Base.Bs_ObsDDD = "";
             Base.Bs_ObsTel = "";
@@ -94,6 +93,9 @@ namespace Teste.Forms
 
             Base.Bs_TotTel = 0;
             Base.Bs_LinhaGrid = 0;
+
+            Base.Bs_UltTab = "";
+            Base.Bs_UltUso = 0;
         }
 
 
@@ -103,19 +105,19 @@ namespace Teste.Forms
 
             // verifica se houve alteração na base de trab do operador
             clsUsuLogado.InicializaConfigOperador();
-            
-            if(await P02_BuscaAgenda(clsUsuLogado.Log_Cpf) == false)
+
+            if (await P02_BuscaAgenda(clsUsuLogado.Log_Cpf) == false)
             {
-                if (await P03_BuscarRegLivre(clsUsuLogado.Log_Cpf ,clsUsuLogado.Log_Base) == false)
+                if (await P03_BuscarRegLivre(clsUsuLogado.Log_Cpf, clsUsuLogado.Log_Base) == false)
                 {
-                    MessageBox.Show("Sem Registros", "Base : " + clsUsuLogado.Log_Base , MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Sem Registros", "Base : " + clsUsuLogado.Log_Base, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
         private async Task<bool> P02_BuscaAgenda(string _cpf)
         {
-            Inicio:
+        Inicio:
             clsVariaveis.StrSQL = "select top 1 * from Agenda where Ativo = 1 and Operador = '" + _cpf +
                                   "' and Data <= '" + DateTime.Now.ToString("yyyy-MM-dd") +
                                   "' and Hora <= '" + DateTime.Now.ToString("HH:mm:ss") + "' order by Data desc ,Hora desc ";
@@ -177,8 +179,8 @@ namespace Teste.Forms
         {
             if (_ehAg == "SIM")
             {
-                clsVariaveis.StrSQL = ("select * from Base where uso = 9 and Ordem = '" + _ordem +
-                                       "' and Arquivo = '" + _arquivo + "' and Acao = '" + _acao + "' ");
+                clsVariaveis.StrSQL = "select * from Base where uso = 9 and Ordem = '" + _ordem +
+                                       "' and Arquivo = '" + _arquivo + "' and Acao = '" + _acao + "' ";
             }
             else
             {
@@ -188,12 +190,22 @@ namespace Teste.Forms
             DataTable dt = await clsConexao.ConsultaAsync(clsVariaveis.StrSQL);
             if (dt.Rows.Count > 0)
             {
+                Base.Bs_LinhaGrid = 0;
+
                 // carregando alguns dados da classe : Base
                 Base.Bs_Ordem = dt.Rows[0]["Ordem"].ToString();
                 Base.Bs_Arquivo = dt.Rows[0]["Arquivo"].ToString();
                 Base.Bs_Acao = dt.Rows[0]["Acao"].ToString();
                 Base.Bs_Nome = dt.Rows[0]["Nome"].ToString();
                 Base.Bs_Doc = dt.Rows[0]["Doc"].ToString();
+
+                bool booProc = await clsConexao.ExecuteQueryAsync("delete from Base_Tel_Temp where Operador = '" + clsUsuLogado.Log_Cpf + "'");
+
+                clsVariaveis.StrSQL = "insert into [Base_Tel_Temp] ( Ordem ,Arquivo ,Acao ,DDD ,Telefone ,uso ,Tentativas ,Enriquecido ,Sim_Por ,Operador ) " +
+                        "select Ordem ,Arquivo ,Acao ,DDD ,Telefone ,0 ,Tentativas ,Enriquecido ,Sim_Por ,'" + clsUsuLogado.Log_Cpf + "' " +
+                        " from [Base_Tel] where Ordem = '" + Base.Bs_Ordem + "' and Arquivo = '" + Base.Bs_Arquivo +
+                        "' and Acao = '" + Base.Bs_Acao + "' ";
+                booProc = await clsConexao.ExecuteQueryAsync(clsVariaveis.StrSQL);
 
 
                 lblOrdem.Text = Base.Bs_Ordem;
@@ -222,15 +234,16 @@ namespace Teste.Forms
 
             try
             {
-                clsVariaveis.StrSQL = "select ddd ,telefone ,'' as Status from Base_Tel where Ordem = '" + Base.Bs_Ordem +
+                clsVariaveis.StrSQL = "select DDD ,TELEFONE ,RESULTADO from [Base_Tel_Temp] where Ordem = '" + Base.Bs_Ordem +
                      "' and Arquivo = '" + Base.Bs_Arquivo + "' and Acao = '" + Base.Bs_Acao +
                      "' order by Enriquecido ,Sim_Por";
                 DataTable dt1 = await clsConexao.ConsultaAsync(clsVariaveis.StrSQL);
                 if (dt1.Rows.Count > 0)
                 {
                     Base.Bs_TotTel = dt1.Rows.Count;
-                    Base.Bs_LinhaGrid = 0;
+                    //Base.Bs_LinhaGrid = 0;
 
+                    // populando o datagridview com dados do datatable
                     dtGridTel.DataSource = dt1;
                     foreach (DataGridViewColumn coluna in dtGridTel.Columns)
                     {
@@ -251,16 +264,55 @@ namespace Teste.Forms
         }
 
 
-        private void SelecFoneDoGrid(int intTotLin ,int intLin)
+        private void SelecFoneDoGrid(int intTotLin, int intLin)
         {
-            if(intLin <= intTotLin)
+            if (intLin < intTotLin)
             {
                 lblDDD.Text = (dtGridTel[0, intLin].Value).ToString();
                 lblFone.Text = (dtGridTel[1, intLin].Value).ToString();
             }
             else
             {
+                lblDDD.Text = "";
+                lblFone.Text = "";
+            }
+        }
 
+
+        private async void TabularFone(string _ddd, string _fone, int _uso, string _tabulacao)
+        {
+            try
+            {
+                // atualizando em Base_Tel_Temp
+                clsVariaveis.StrSQL = "update Base_Tel_Temp set Operador = '" + clsUsuLogado.Log_Cpf +
+                    "' ,Data = '" + DateTime.Now.ToString("yyyy-MM-dd") +
+                    "' ,Hora = '" + DateTime.Now.ToString("HH:mm:ss") +
+                    "' ,Resultado = '" + _tabulacao + "' ,Uso = " + _uso + " ,Tentativas = Tentativas + 1 " +
+                    " where Ordem = '" + Base.Bs_Ordem + "' and Arquivo = '" + Base.Bs_Arquivo +
+                    "' and Acao = '" + Base.Bs_Acao + "' and DDD = '" + _ddd + "' and Telefone = '" + _fone + "'";
+                bool booResp = await clsConexao.ExecuteQueryAsync(clsVariaveis.StrSQL);
+
+                // atualizando em Base_Tel
+                clsVariaveis.StrSQL = "update Base_Tel set Operador = '" + clsUsuLogado.Log_Cpf +
+                    "' ,Data = '" + DateTime.Now.ToString("yyyy-MM-dd") +
+                    "' ,Hora = '" + DateTime.Now.ToString("HH:mm:ss") +
+                    "' ,Resultado = '" + _tabulacao + "' ,Uso = " + _uso + " ,Tentativas = Tentativas + 1 " +
+                    " where Ordem = '" + Base.Bs_Ordem + "' and Arquivo = '" + Base.Bs_Arquivo +
+                    "' and Acao = '" + Base.Bs_Acao + "' and DDD = '" + _ddd + "' and Telefone = '" + _fone + "'";
+                booResp = await clsConexao.ExecuteQueryAsync(clsVariaveis.StrSQL);
+
+                if (booResp)
+                {
+                    lblUltimaTab.Text = _tabulacao;
+
+                    cboTabulacao.SelectedIndex = -1;
+                    Base.Bs_LinhaGrid = Base.Bs_LinhaGrid + 1;
+                    PreencheGridTel();
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Tabular Fone", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -291,14 +343,16 @@ namespace Teste.Forms
             }
         }
 
+
         private async void btnSair_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Tem certeza ?", "Deseja fechar a tela", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-
-                clsVariaveis.StrSQL = "update Base set Em_Uso = 0 where Em_Uso = 1 and Ordem = '" + Base.Bs_Ordem +
-                            "' and Acao = '" + Base.Bs_Acao + "' and Arquivo = '" + Base.Bs_Arquivo +
+                clsVariaveis.StrSQL = "update [Base] set Em_Uso = 0 where Em_Uso = 1 " +
+                            "  and Ordem    = '" + Base.Bs_Ordem +
+                            "' and Acao     = '" + Base.Bs_Acao +
+                            "' and Arquivo  = '" + Base.Bs_Arquivo +
                             "' and Operador = '" + clsUsuLogado.Log_Cpf + "'";
                 bool booRes = await clsConexao.ExecuteQueryAsync(clsVariaveis.StrSQL);
 
@@ -310,41 +364,125 @@ namespace Teste.Forms
 
         private void frmAtivo_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(booFechaForm == false)
+            if (booFechaForm == false)
             {
                 e.Cancel = true;
             }
         }
 
+
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            if(lblDDD.Text != "" && cboTabulacao.Text != "")
+            if (lblDDD.Text != "" && cboTabulacao.Text != "")
             {
-                switch (cboTabulacao.Text)
+                DialogResult dialogResult = MessageBox.Show("Tem certeza ?", cboTabulacao.Text, MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    case "AG":
+                    lstUsoTabulacao.SelectedIndex = cboTabulacao.FindStringExact(cboTabulacao.Text, lstUsoTabulacao.SelectedIndex);
 
-                        break;
+                    Base.Bs_UltUso = Convert.ToInt16(lstUsoTabulacao.Text);
+                    Base.Bs_UltTab = cboTabulacao.Text;
 
-                    case "POSITIVO":
+                    switch (cboTabulacao.Text)
+                    {
+                        case "AG":
 
-                        break;
+                            break;
 
-                    default:
+                        case "POSITIVO":
 
-                        break;
-                    
+                            break;
+
+                        default:
+                            TabularFone(lblDDD.Text, lblFone.Text, Base.Bs_UltUso, Base.Bs_UltTab);
+                            break;
+                    }
                 }
-
-
-
             }
         }
+
+        private async void btnFinalizar_Click(object sender, EventArgs e)
+        {
+            if (Base.Bs_UltTab != "")
+            {
+                DialogResult dialogResult = MessageBox.Show("Tem certeza ?", "Finalizar Ordem", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    // alteracao em Usuario
+                    bool booRet = await clsConexao.ExecuteQueryAsync(clsBase.ComandoTabulaOrdem(Base));
+                    if (booRet)
+                    {
+                        LimparTela();
+                        P01_BuscaRegistro();
+                    }
+
+                }
+            }
+        }
+
+        private void lblXAg_Click(object sender, EventArgs e)
+        {
+            groupBoxAg.Visible = false;
+        }
+
+        private void cboTabulacao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cboTabulacao.Text)
+            {
+                case "AG":
+                    groupBoxPositivo.Location = new Point(100, 100);
+                    dtPickerDt.Value = DateTime.Now;
+                    dtPickerHr.Value = DateTime.Now;
+                    groupBoxAg.Location = new Point(0, 43);
+                    groupBoxAg.Visible = true;
+                    this.Refresh();
+                    break;
+
+                case "POSITIVO":
+                    groupBoxAg.Location = new Point(100, 100);
+                    cboFPagto.SelectedIndex = -1;
+                    groupBoxPositivo.Location = new Point(0, 39);
+                    groupBoxPositivo.Visible = true;
+                    this.Refresh();
+                    break;
+
+                default:
+                    groupBoxAg.Visible = false;
+                    groupBoxPositivo.Visible = false;
+                    break;
+            }
+        }
+
+
+        private void lblXAg_Click_1(object sender, EventArgs e)
+        {
+            //groupBoxAg.Visible = false;
+            cboTabulacao.SelectedIndex = -1;
+        }
+
+
+        private async void btnGravarAg_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza ?", "Gravar Agendamento", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                lstUsoTabulacao.SelectedIndex = cboTabulacao.FindStringExact(cboTabulacao.Text, lstUsoTabulacao.SelectedIndex);
+
+                Base.Bs_UltUso = Convert.ToInt16(lstUsoTabulacao.Text);
+                Base.Bs_UltTab = cboTabulacao.Text;
+
+                // gravar agenda
+                bool booRet = await clsConexao.ExecuteQueryAsync(clsBase.ComandoInsertAgenda(Base ,dtPickerDt.Value.ToString("yyyy-MM-dd") ,dtPickerHr.Value.ToString("HH:mm:ss") ,txtObsAg.Text ,lblDDD.Text ,lblFone.Text ));
+                if (booRet)
+                {
+                    TabularFone(lblDDD.Text, lblFone.Text, Base.Bs_UltUso, Base.Bs_UltTab);
+                }
+            }
+        }
+
+        private void lblXPos_Click(object sender, EventArgs e)
+        {
+            cboTabulacao.SelectedIndex = -1;
+        }
     }
-
-
-
-
-
-
 }

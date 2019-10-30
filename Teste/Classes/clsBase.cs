@@ -1,5 +1,6 @@
 ﻿
 
+using System;
 using System.Threading.Tasks;
 
 namespace Teste.Classes
@@ -35,6 +36,10 @@ namespace Teste.Classes
         public int Bs_TotTel { get; set; }
         public int Bs_LinhaGrid { get; set; }
 
+        public int Bs_UltUso { get; set; }
+        public string Bs_UltTpTab { get; set; }
+        public string Bs_UltTab { get; set; }
+
 
         // construtores
         public clsBase()
@@ -66,13 +71,35 @@ namespace Teste.Classes
         }
 
 
-        //public async Task<bool> TabularTel( string _ddd ,string _tel , string _tab ,string _ordem ,string _arquivo ,string _acao )
-        //{
-        //    clsVariaveis.StrSQL = "Update Base_Tel";
+        public static string ComandoInsertAgenda(clsBase Base ,string _dt ,string _hr ,string _obs ,string _ddd ,string _tel)
+        {
+            string Comando = "Insert into Agenda ( Operador ,Data ,Hora ,Obs ,Ordem ,Arquivo ,Acao ,DDD ,Telefone ,Reg_Data ,Reg_Hora ) values ( ";
+            Comando += clsFuncoes.MontaInsert(clsUsuLogado.Log_Cpf, "TEXT") + " ,";
+            Comando += clsFuncoes.MontaInsert(_dt            , "TEXT") + " ,";
+            Comando += clsFuncoes.MontaInsert(_hr            , "TEXT") + " ,";
+            Comando += clsFuncoes.MontaInsert(_obs           , "TEXT") + " ,";
+            Comando += clsFuncoes.MontaInsert(Base.Bs_Ordem  , "TEXT") + " ,";
+            Comando += clsFuncoes.MontaInsert(Base.Bs_Arquivo, "TEXT") + " ,";
+            Comando += clsFuncoes.MontaInsert(Base.Bs_Acao   , "TEXT") + " ,";
+            Comando += clsFuncoes.MontaInsert(_ddd           , "TEXT") + " ,";
+            Comando += clsFuncoes.MontaInsert(_tel           , "TEXT") + " ,";
+            Comando += clsFuncoes.MontaInsert(DateTime.Now.ToString("yyyy-MM-dd"), "TEXT") + " ,";
+            Comando += clsFuncoes.MontaInsert(DateTime.Now.ToString("HH:mm:ss")  , "TEXT") + " )";
+            return Comando;
+        }
 
-
-
-        //}
+        public static string ComandoTabulaOrdem(clsBase Base)
+        {
+            string Comando = "update [Base] set  Em_Uso = 0 ,Em_UsoHora = NULL ,Uso = " + Base.Bs_UltUso + " ,Repasses = Repasses + 1 ";
+            Comando += "," + clsFuncoes.MontaUpdate("Operador" , clsUsuLogado.Log_Cpf , "TEXT");
+            Comando += "," + clsFuncoes.MontaUpdate("Tabulacao", Base.Bs_UltTab       , "TEXT");
+            Comando += "," + clsFuncoes.MontaUpdate("Data"     , DateTime.Now.ToString("yyyy-MM-dd"), "TEXT");
+            Comando += "," + clsFuncoes.MontaUpdate("Hora"     , DateTime.Now.ToString("HH:mm:ss")  , "TEXT");
+            Comando += " where  Ordem = '" + Base.Bs_Ordem;
+            Comando += "' and Arquivo = '" + Base.Bs_Arquivo;
+            Comando += "'    and Acao = '" + Base.Bs_Acao + "'";
+            return Comando;
+        }
 
 
 
