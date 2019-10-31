@@ -164,7 +164,7 @@ namespace Teste.Classes
                     }
                     else
                     {
-                        return " '" + _strDado.Trim().ToUpper() + "' ";
+                        return " '" + _strDado.Trim() + "' ";
                     }
                 }
                 else if (_strTipo == "EMAIL")
@@ -231,7 +231,7 @@ namespace Teste.Classes
                     }
                     else
                     {
-                        return _strcampo + " = '" + _strDado.Trim().ToUpper() + "' ";
+                        return _strcampo + " = '" + _strDado.Trim() + "' ";
                     }
                 }
                 else if (_strTipo == "INT")
@@ -369,6 +369,7 @@ namespace Teste.Classes
             DateTime data = Convert.ToDateTime(_data);
             return data.Year.ToString() + "-" + data.Month.ToString() + "-" + data.Day.ToString();
         }
+
 
         public static string ValidarData(Form form, MaskedTextBox msk)
         {

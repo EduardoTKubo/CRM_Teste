@@ -46,6 +46,39 @@ namespace Teste.Classes
         }
 
 
+        public static bool ExecuteQuery(string Comando)
+        {
+            try
+            {
+                sqlCon = new SqlConnection
+                {
+                    ConnectionString = Classes.clsVariaveis.Conexao
+                };
+                sqlCon.Open();
+
+                sqlCom = new SqlCommand
+                {
+                    Connection = sqlCon,
+                    CommandType = CommandType.Text,
+                    CommandText = Comando
+                };
+                sqlCom.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                MessageBox.Show(e.Message, "ExecuteQuery", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+        }
+
+
+
         public static async Task<DataTable> ConsultaAsync(string select)
         {
             try

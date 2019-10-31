@@ -58,14 +58,6 @@ namespace Teste
                                 txtSenha.Enabled = true;
                                 txtSenha.Focus();
                             }
-                            else
-                            {
-                                //btnAcesso.PerformClick();
-                            }
-                        }
-                        else
-                        {
-                            //btnAcesso.PerformClick();
                         }
                     }
                 }
