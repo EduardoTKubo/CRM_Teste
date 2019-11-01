@@ -19,39 +19,52 @@ namespace Teste.Forms
 
             this.Text = Application.ProductName.ToString();
 
-            if(clsUsuLogado.Log_Nome != null)
+            if (clsUsuLogado.Log_Nome != null)
             {
                 toolStripStatusLabel1.Text = "v." + Application.ProductVersion.ToString();
                 toolStripStatusLabel2.Text = clsUsuLogado.Log_Nome.ToString();
                 toolStripStatusLabel3.Text = DateTime.Now.ToString("dd/MM/yyyy");
             }
             
-
             TrataMenus();
         }
 
         private async void TrataMenus()
         {
-            DataTable dt = new DataTable();
-            dt = await clsConexao.ConsultaAsync("SELECT * FROM USUARIO_ACESSO_MENU WHERE IdUsu = " + clsUsuLogado.Log_Id);
+            bool booRet = await TrataMenusAsync();
+        }
 
-            foreach (DataRow Acesso in dt.Rows)
+        private async Task<bool> TrataMenusAsync()
+        {
+            try
             {
-                foreach (ToolStripMenuItem item in menuStrip1.Items)
-                {
-                    if (item.Name == Acesso["NomeMenu"].ToString())
-                    {
-                        item.Enabled = true;
-                    }
+                DataTable dt = new DataTable();
+                dt = await clsConexao.ConsultaAsync("SELECT * FROM USUARIO_ACESSO_MENU WHERE IdUsu = " + clsUsuLogado.Log_Id);
 
-                    foreach (ToolStripItem subitem in (item as ToolStripMenuItem).DropDownItems)
+                foreach (DataRow Acesso in dt.Rows)
+                {
+                    foreach (ToolStripMenuItem item in menuStrip1.Items)
                     {
-                        if (subitem.Name == Acesso["NomeMenu"].ToString())
+                        if (item.Name == Acesso["NomeMenu"].ToString())
                         {
-                            subitem.Enabled = true;
+                            item.Enabled = true;
+                        }
+
+                        foreach (ToolStripItem subitem in (item as ToolStripMenuItem).DropDownItems)
+                        {
+                            if (subitem.Name == Acesso["NomeMenu"].ToString())
+                            {
+                                subitem.Enabled = true;
+                            }
                         }
                     }
                 }
+                return true;
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message ,"Trata Menu" ,MessageBoxButtons.OK ,MessageBoxIcon.Information);
+                return false;
             }
         }
 
@@ -76,6 +89,11 @@ namespace Teste.Forms
         private void mnuAtivo_Click(object sender, EventArgs e)
         {
             Classes.clsFuncoes.OpenForm(new Forms.frmAtivo(), this, "1");
+        }
+
+        private void mnuBases_Click(object sender, EventArgs e)
+        {
+            Classes.clsFuncoes.OpenForm(new Forms.frmAdmBase(), this, "1");
         }
     }
 }

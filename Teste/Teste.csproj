@@ -56,6 +56,12 @@
     <Compile Include="Classes\clsUsuario.cs" />
     <Compile Include="Classes\clsUsuLogado.cs" />
     <Compile Include="Classes\clsVariaveis.cs" />
+    <Compile Include="Forms\frmAdmBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAdmBase.Designer.cs">
+      <DependentUpon>frmAdmBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmAtivo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\frmAdmBase.resx">
+      <DependentUpon>frmAdmBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmAtivo.resx">
       <DependentUpon>frmAtivo.cs</DependentUpon>
     </EmbeddedResource>

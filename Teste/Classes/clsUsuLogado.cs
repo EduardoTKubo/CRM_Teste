@@ -14,8 +14,6 @@ namespace Teste.Classes
         public static string Log_Status { get; set; }
         public static string Log_Senha { get; set; }
         public static string Log_Equipe { get; set; }
-        public static string Log_Base { get; set; }
-        public static string Log_SeqBase { get; set; }
         public static string Log_NomePC { get; set; }
 
 
@@ -24,7 +22,7 @@ namespace Teste.Classes
         {
         }
 
-        public clsUsuLogado(string log_Id, string log_Nome, string log_Cpf, string log_Rank, string log_Status, string log_Senha, string log_Equipe, string log_Base, string log_SeqBase, string log_NomePC)
+        public clsUsuLogado(string log_Id, string log_Nome, string log_Cpf, string log_Rank, string log_Status, string log_Senha, string log_Equipe, string log_NomePC)
         {
             Log_Id = log_Id;
             Log_Nome = log_Nome;
@@ -33,8 +31,6 @@ namespace Teste.Classes
             Log_Status = log_Status;
             Log_Senha = log_Senha;
             Log_Equipe = log_Equipe;
-            Log_Base = log_Base;
-            Log_SeqBase = log_SeqBase;
             Log_NomePC = log_NomePC;
         }
 
@@ -93,7 +89,7 @@ namespace Teste.Classes
 
         public async static Task<bool> ObterDadosUsuarioLogado(string cpf)
         {
-            string Param = "[IdUsu],[Nome],[Doc],[Rank],[Status],[Senha],[Equipe],[BaseDeTrab],[SeqDaBase]";
+            string Param = "[IdUsu],[Nome],[Doc],[Rank],[Status],[Senha],[Equipe]";
 
             DataTable dt = new DataTable();
             if (cpf.Length < 6)
@@ -128,23 +124,7 @@ namespace Teste.Classes
             clsUsuLogado.Log_Status = dt.Rows[0][4].ToString();
             clsUsuLogado.Log_Senha = dt.Rows[0][5].ToString();
             clsUsuLogado.Log_Equipe = dt.Rows[0][6].ToString();
-            clsUsuLogado.Log_Base = dt.Rows[0][7].ToString();
-            clsUsuLogado.Log_SeqBase = dt.Rows[0][8].ToString();
             clsUsuLogado.Log_NomePC = Environment.MachineName;
-        }
-
-
-        public static void InicializaConfigOperador()
-        {
-            clsUsuLogado.Log_Base = "";
-
-            clsVariaveis.StrSQL = "select BaseDeTrab ,SeqDaBase from Usuario where Doc = '" + clsUsuLogado.Log_Cpf + "' and Ativo = 1";
-            DataTable dtOpe = clsConexao.Consulta(clsVariaveis.StrSQL);
-            if (dtOpe.Rows.Count > 0)
-            {
-                clsUsuLogado.Log_Base = dtOpe.Rows[0]["BaseDeTrab"].ToString();
-                clsUsuLogado.Log_SeqBase = dtOpe.Rows[0]["SeqDaBase"].ToString();
-            }
         }
 
 

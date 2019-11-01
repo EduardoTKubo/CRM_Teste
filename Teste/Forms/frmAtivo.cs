@@ -119,13 +119,13 @@ namespace Teste.Forms
             LimparClasseBase();
 
             // verifica se houve alteração na base de trab do operador
-            clsUsuLogado.InicializaConfigOperador();
+            //clsUsuLogado.InicializaConfigOperador();
 
             if (await P02_BuscaAgenda(clsUsuLogado.Log_Cpf) == false)
             {
-                if (await P03_BuscarRegLivre(clsUsuLogado.Log_Cpf, clsUsuLogado.Log_Base, clsUsuLogado.Log_SeqBase) == false)
+                if (await P03_BuscarRegLivre(clsUsuLogado.Log_Cpf) == false)
                 {
-                    MessageBox.Show("Sem Registros", "Base : " + clsUsuLogado.Log_Base, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Sem Registros", "Base" , MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -179,15 +179,19 @@ namespace Teste.Forms
         }
 
 
-        private async Task<bool> P03_BuscarRegLivre(string _cpf, string _base, string _seq)
+        private async Task<bool> P03_BuscarRegLivre(string _cpf)
         {
-            clsVariaveis.StrSQL = "exec sp_BuscaRegistro '" + _cpf + "' ,'" + clsUsuLogado.Log_NomePC + "' ,'" + clsUsuLogado.Log_Base + "' ,'" + _seq + "' ";
+            clsVariaveis.StrSQL = "exec sp_BuscaRegistro '" + _cpf + "' ,'" + clsUsuLogado.Log_NomePC + "' ";
 
             DataTable dt = new DataTable();
             dt = await clsConexao.ConsultaAsync(clsVariaveis.StrSQL);
             if (dt.Rows.Count > 0)
             {
-                bool booResp = await PreencheTelaAsync(_cpf, dt.Rows[0]["ordem"].ToString(), dt.Rows[0]["arquivo"].ToString(), _base, "NAO");
+                Base.Bs_Ordem = dt.Rows[0]["ordem"].ToString();
+                Base.Bs_Arquivo = dt.Rows[0]["arquivo"].ToString();
+                Base.Bs_Acao = dt.Rows[0]["acao"].ToString();
+
+                bool booResp = await PreencheTelaAsync(_cpf, Base.Bs_Ordem, Base.Bs_Arquivo, Base.Bs_Acao, "NAO");
                 return booResp;
             }
             else
@@ -220,6 +224,7 @@ namespace Teste.Forms
                 Base.Bs_Acao = dt.Rows[0]["Acao"].ToString();
                 Base.Bs_Nome = dt.Rows[0]["Nome"].ToString();
                 Base.Bs_Doc = dt.Rows[0]["Doc"].ToString();
+                Base.Bs_Obs = dt.Rows[0]["Obs"].ToString();
 
                 bool booProc = await clsConexao.ExecuteQueryAsync("delete from Base_Tel_Temp where Operador = '" + clsUsuLogado.Log_Cpf + "'");
 
@@ -234,6 +239,7 @@ namespace Teste.Forms
 
                 lblOrdem.Text = Base.Bs_Ordem;
                 lblNome.Text = Base.Bs_Nome;
+                txtObs.Text = Base.Bs_Obs;
 
                 PreencheGridTel(_ehAg);
 
@@ -259,9 +265,10 @@ namespace Teste.Forms
 
             try
             {
-                clsVariaveis.StrSQL = "select DDD ,TELEFONE ,TABULACAO from [Base_Tel_Temp] where Ordem = '" + Base.Bs_Ordem +
-                     "' and Arquivo = '" + Base.Bs_Arquivo + "' and Acao = '" + Base.Bs_Acao +
-                     "' order by Enriquecido ,Sim_Por";
+                clsVariaveis.StrSQL = "select DDD ,TELEFONE ,TABULACAO from [Base_Tel_Temp] " + 
+                                      " where Ordem = '" + Base.Bs_Ordem +
+                                      "' and Arquivo = '" + Base.Bs_Arquivo + "' and Acao = '" + Base.Bs_Acao +
+                                      "' order by Enriquecido ,Sim_Por";
                 DataTable dt1 = await clsConexao.ConsultaAsync(clsVariaveis.StrSQL);
                 if (dt1.Rows.Count > 0)
                 {
@@ -418,7 +425,15 @@ namespace Teste.Forms
                             "' and Arquivo  = '" + Base.Bs_Arquivo +
                             "' and Operador = '" + clsUsuLogado.Log_Cpf + "'";
                     bool booRes = await clsConexao.ExecuteQueryAsync(clsVariaveis.StrSQL);
+
+                    clsVariaveis.StrSQL = "delete from BuscaTemp where Operador = '" + clsUsuLogado.Log_Cpf +
+                                          "' and PA = '" + clsUsuLogado.Log_NomePC  +"'";
+                    booRes = await clsConexao.ExecuteQueryAsync(clsVariaveis.StrSQL);
+
+                    clsVariaveis.StrSQL = "delete from Base_Tel_Temp where Operador = '" + clsUsuLogado.Log_Cpf + "'";
+                    booRes = await clsConexao.ExecuteQueryAsync(clsVariaveis.StrSQL);
                 }
+
                 if (Base.Bs_AgId != 0)
                 {
                     clsVariaveis.StrSQL = "update [Agenda] set Ativo = 1 where Ativo = 0 and IdAg = " + Base.Bs_AgId;

@@ -40,6 +40,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblIdAg = new System.Windows.Forms.Label();
             this.groupBoxPositivo = new System.Windows.Forms.GroupBox();
             this.btnGravaPos = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
@@ -71,7 +72,6 @@
             this.txtObs = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnSair = new System.Windows.Forms.Button();
-            this.lblIdAg = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridTel)).BeginInit();
@@ -154,6 +154,7 @@
             this.dtGridTel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtGridTel.Location = new System.Drawing.Point(21, 74);
             this.dtGridTel.Name = "dtGridTel";
+            this.dtGridTel.RowHeadersVisible = false;
             this.dtGridTel.Size = new System.Drawing.Size(375, 236);
             this.dtGridTel.TabIndex = 4;
             // 
@@ -215,6 +216,16 @@
             this.groupBox2.Size = new System.Drawing.Size(431, 143);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
+            // 
+            // lblIdAg
+            // 
+            this.lblIdAg.AllowDrop = true;
+            this.lblIdAg.AutoSize = true;
+            this.lblIdAg.Location = new System.Drawing.Point(389, 18);
+            this.lblIdAg.Name = "lblIdAg";
+            this.lblIdAg.Size = new System.Drawing.Size(13, 13);
+            this.lblIdAg.TabIndex = 23;
+            this.lblIdAg.Text = "0";
             // 
             // groupBoxPositivo
             // 
@@ -550,16 +561,6 @@
             this.btnSair.Text = "Sair";
             this.btnSair.UseVisualStyleBackColor = true;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
-            // 
-            // lblIdAg
-            // 
-            this.lblIdAg.AllowDrop = true;
-            this.lblIdAg.AutoSize = true;
-            this.lblIdAg.Location = new System.Drawing.Point(389, 18);
-            this.lblIdAg.Name = "lblIdAg";
-            this.lblIdAg.Size = new System.Drawing.Size(13, 13);
-            this.lblIdAg.TabIndex = 23;
-            this.lblIdAg.Text = "0";
             // 
             // frmAtivo
             // 

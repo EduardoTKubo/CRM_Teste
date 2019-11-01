@@ -80,7 +80,7 @@
             // 
             this.mnuAtivo.Enabled = false;
             this.mnuAtivo.Name = "mnuAtivo";
-            this.mnuAtivo.Size = new System.Drawing.Size(180, 22);
+            this.mnuAtivo.Size = new System.Drawing.Size(102, 22);
             this.mnuAtivo.Text = "Ativo";
             this.mnuAtivo.Click += new System.EventHandler(this.mnuAtivo_Click);
             // 
@@ -102,8 +102,9 @@
             // mnuBases
             // 
             this.mnuBases.Name = "mnuBases";
-            this.mnuBases.Size = new System.Drawing.Size(103, 22);
+            this.mnuBases.Size = new System.Drawing.Size(180, 22);
             this.mnuBases.Text = "Bases";
+            this.mnuBases.Click += new System.EventHandler(this.mnuBases_Click);
             // 
             // toolStripMenuItem2
             // 
