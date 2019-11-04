@@ -152,6 +152,7 @@ namespace Teste.Forms
             }
             catch(Exception e1)
             {
+ //               MessageBox.Show(e1.Message, "Atualizar Sequencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 MessageBox.Show(e1.Message, "Atualizar Sequencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
