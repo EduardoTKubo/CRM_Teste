@@ -14,7 +14,7 @@ namespace Teste.Forms
 {
     public partial class frmAdmBase : Form
     {
-        bool booFechaForm = false;
+        //bool booFechaForm = false;
 
 
         public frmAdmBase()
@@ -26,6 +26,8 @@ namespace Teste.Forms
             toolStripStatusLabel1.Text = "v." + Application.ProductVersion.ToString();
             toolStripStatusLabel2.Text = clsUsuLogado.Log_Nome.ToString();
             toolStripStatusLabel3.Text = DateTime.Now.ToString("dd/MM/yyyy");
+
+            PreencherCombos();
 
             tabControl1.SelectedIndex = 0;
             ListarAcao();
@@ -40,7 +42,7 @@ namespace Teste.Forms
         {
             try
             {
-                clsVariaveis.StrSQL = "select ID ,Atrab ,Acao ,seq from Tab_Acao where Ativo = 1 order by Acao";
+                clsVariaveis.StrSQL = "select ID ,Atrab ,Acao ,Seq from Tab_Acao where Ativo = 1 order by Acao";
                 DataTable dt = new DataTable();
                 dt = await clsConexao.ConsultaAsync(clsVariaveis.StrSQL);
 
@@ -63,21 +65,20 @@ namespace Teste.Forms
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message ,"Listar Acao" ,MessageBoxButtons.OK ,MessageBoxIcon.Information);
+                MessageBox.Show(e.Message, "Listar Acao", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
         }
 
-        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void PreencherCombos()
         {
+            cbo1Seq.Items.Clear();
+            cbo1Seq.Items.Add("ASC");
+            cbo1Seq.Items.Add("DESC");
+
 
         }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private async void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (tabControl1.SelectedIndex)
@@ -98,5 +99,63 @@ namespace Teste.Forms
                     break;
             }
         }
+
+        private async void btn1_AtuBaseTrab_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Atualizar ?", "Deseja alterar as bases de trabalho", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    foreach (DataGridViewRow dgv in dtGridBases1.Rows)                // percorrendo datagridview
+                    {
+                        if (dgv.Cells[0].Value != null)
+                        {
+                            if (dgv.Cells[1].Value.ToString() == "True")              // se estiver ticado
+                            {
+                                clsVariaveis.StrSQL = "update Tab_Acao set ATrab = 1 where Ativo = 1 and Acao = '" + dgv.Cells[2].Value.ToString()  + "'";
+                            }
+                            else
+                            {
+                                clsVariaveis.StrSQL = "update Tab_Acao set ATrab = 0 where Ativo = 1 and Acao = '" + dgv.Cells[2].Value.ToString() + "'";
+                            }
+
+                            bool booRet = await clsConexao.ExecuteQueryAsync(clsVariaveis.StrSQL);
+                        }
+                    }
+                    MessageBox.Show("Alterado com sucesso", "Alterar bases de trabalho", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    await ListarAcaoAsync();
+                }
+            }
+            catch (Exception e1)
+            {
+                MessageBox.Show(e1.Message, "Alterar bases de trabalho", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+        }
+
+        private async void btn1AltSeq_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Atualizar ?", "Deseja alterar a sequência de base", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    clsVariaveis.StrSQL = "update Tab_Acao set SEQ = '" + cbo1Seq.Text + "' where Ativo = 1 ";
+                    bool booRet = await clsConexao.ExecuteQueryAsync(clsVariaveis.StrSQL);
+                    if (booRet)
+                    {
+                        MessageBox.Show("Alterado com sucesso", "Atualizar Sequencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        await ListarAcaoAsync();
+                    }
+                }
+            }
+            catch(Exception e1)
+            {
+                MessageBox.Show(e1.Message, "Atualizar Sequencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+
     }
 }

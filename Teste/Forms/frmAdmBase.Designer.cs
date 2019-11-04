@@ -34,10 +34,16 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn1AltSeq = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbo1Seq = new System.Windows.Forms.ComboBox();
+            this.btn1_AtuBaseTrab = new System.Windows.Forms.Button();
+            this.dtGridBases1 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.dtGridBases1 = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -55,7 +61,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(727, 24);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
-            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
             // toolStripStatusLabel1
             // 
@@ -106,21 +111,80 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Silver;
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.btn1AltSeq);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.cbo1Seq);
+            this.tabPage1.Controls.Add(this.btn1_AtuBaseTrab);
             this.tabPage1.Controls.Add(this.dtGridBases1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(719, 288);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Bases";
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            this.tabPage1.Text = "Base de Trabalho";
+            // 
+            // btn1AltSeq
+            // 
+            this.btn1AltSeq.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn1AltSeq.Location = new System.Drawing.Point(473, 168);
+            this.btn1AltSeq.Name = "btn1AltSeq";
+            this.btn1AltSeq.Size = new System.Drawing.Size(149, 34);
+            this.btn1AltSeq.TabIndex = 4;
+            this.btn1AltSeq.Text = "Alterar sequência";
+            this.btn1AltSeq.UseVisualStyleBackColor = true;
+            this.btn1AltSeq.Click += new System.EventHandler(this.btn1AltSeq_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(385, 131);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(149, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Alterar Sequência para : ";
+            // 
+            // cbo1Seq
+            // 
+            this.cbo1Seq.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbo1Seq.FormattingEnabled = true;
+            this.cbo1Seq.Location = new System.Drawing.Point(554, 128);
+            this.cbo1Seq.Name = "cbo1Seq";
+            this.cbo1Seq.Size = new System.Drawing.Size(68, 21);
+            this.cbo1Seq.TabIndex = 2;
+            // 
+            // btn1_AtuBaseTrab
+            // 
+            this.btn1_AtuBaseTrab.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn1_AtuBaseTrab.Location = new System.Drawing.Point(388, 19);
+            this.btn1_AtuBaseTrab.Name = "btn1_AtuBaseTrab";
+            this.btn1_AtuBaseTrab.Size = new System.Drawing.Size(202, 34);
+            this.btn1_AtuBaseTrab.TabIndex = 1;
+            this.btn1_AtuBaseTrab.Text = "Atualizar Bases de Trabalho";
+            this.btn1_AtuBaseTrab.UseVisualStyleBackColor = true;
+            this.btn1_AtuBaseTrab.Click += new System.EventHandler(this.btn1_AtuBaseTrab_Click);
+            // 
+            // dtGridBases1
+            // 
+            this.dtGridBases1.AllowUserToAddRows = false;
+            this.dtGridBases1.AllowUserToDeleteRows = false;
+            this.dtGridBases1.AllowUserToResizeRows = false;
+            this.dtGridBases1.ColumnHeadersHeight = 30;
+            this.dtGridBases1.Location = new System.Drawing.Point(29, 19);
+            this.dtGridBases1.Name = "dtGridBases1";
+            this.dtGridBases1.RowHeadersVisible = false;
+            this.dtGridBases1.RowHeadersWidth = 35;
+            this.dtGridBases1.Size = new System.Drawing.Size(296, 251);
+            this.dtGridBases1.TabIndex = 0;
             // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(719, 253);
+            this.tabPage2.Size = new System.Drawing.Size(719, 288);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -130,7 +194,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(719, 253);
+            this.tabPage3.Size = new System.Drawing.Size(719, 288);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -140,23 +204,30 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(719, 235);
+            this.tabPage4.Size = new System.Drawing.Size(719, 288);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // dtGridBases1
+            // label2
             // 
-            this.dtGridBases1.AllowUserToAddRows = false;
-            this.dtGridBases1.AllowUserToDeleteRows = false;
-            this.dtGridBases1.AllowUserToResizeRows = false;
-            this.dtGridBases1.ColumnHeadersHeight = 30;
-            this.dtGridBases1.Location = new System.Drawing.Point(8, 21);
-            this.dtGridBases1.Name = "dtGridBases1";
-            this.dtGridBases1.RowHeadersVisible = false;
-            this.dtGridBases1.RowHeadersWidth = 35;
-            this.dtGridBases1.Size = new System.Drawing.Size(296, 261);
-            this.dtGridBases1.TabIndex = 0;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(473, 218);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(195, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "ASC  - do mais antigo para o mais novo ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(473, 231);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(197, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "DESC - do mais novo para o mais antigo";
             // 
             // frmAdmBase
             // 
@@ -168,11 +239,12 @@
             this.Controls.Add(this.statusStrip1);
             this.Name = "frmAdmBase";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmAdmBase";
+            this.Text = "Admnistração de Bases";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridBases1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -191,5 +263,11 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.DataGridView dtGridBases1;
+        private System.Windows.Forms.Button btn1AltSeq;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbo1Seq;
+        private System.Windows.Forms.Button btn1_AtuBaseTrab;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }
